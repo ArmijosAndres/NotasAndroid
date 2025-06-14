@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "306539365831",
+    "project_id": "notas-a-practica",
+    "storage_bucket": "notas-a-practica.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:306539365831:android:794e5e6a6f5033dd0345e2",
+        "android_client_info": {
+          "package_name": "com.example.notas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjWd_6Xc136wN8z6XAlM27x8cFW2x5Gvg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
