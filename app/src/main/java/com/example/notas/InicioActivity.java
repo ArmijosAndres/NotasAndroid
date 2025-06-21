@@ -1,6 +1,8 @@
 package com.example.notas;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +24,14 @@ public class InicioActivity extends AppCompatActivity {
         });
 
         //
+        Button crearNota=findViewById(R.id.btn_crear_nota);
+
+        crearNota.setOnClickListener(v -> {
+
+            Intent intent=new Intent(InicioActivity.this, CrearNotaActivity.class);
+            startActivity(intent);
+
+        });
 
     }
 
