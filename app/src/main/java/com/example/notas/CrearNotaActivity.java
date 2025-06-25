@@ -70,6 +70,7 @@ public class CrearNotaActivity extends AppCompatActivity {
                 //alistamos los datos
                 nota.put("titulo", tituloNota);
                 nota.put("contenido", contenidoNota);
+                nota.put("Id", IdNota);
 
                 //metodo
                 db.child("notas").child(currentUserId).child(IdNota).setValue(nota).addOnCompleteListener(new OnCompleteListener<Void>() {
