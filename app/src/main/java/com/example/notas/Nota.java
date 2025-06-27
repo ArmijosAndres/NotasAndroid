@@ -2,6 +2,11 @@ package com.example.notas;
 
 public class Nota {
 
+    //constructor vacio para que inicie el programa
+    public Nota (){
+
+    };
+
     private String Id;
 
     public Nota(String id) {
