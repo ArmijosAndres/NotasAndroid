@@ -1,5 +1,6 @@
 package com.example.notas;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,11 @@ public class NotasAdapter extends RecyclerView.Adapter<NotasAdapter.ViewHolderNo
         Nota nota = notasList.get(position);
         holder.titulo.setText(nota.getTitulo());
         holder.contenido.setText(nota.getContenido());
+        holder.itemView.setOnClickListener(v ->{
+            Intent intent = new Intent(holder.itemView.getContext(), EditarNotaActivity.class);
+            intent.putExtra("IdNota", nota.getId());
+            holder.itemView.getContext().startActivity(intent);
+        });
 
     }
 
