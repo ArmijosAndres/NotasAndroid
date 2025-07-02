@@ -1,8 +1,10 @@
 package com.example.notas;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -11,11 +13,17 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class EditarNotaActivity extends AppCompatActivity {
 
@@ -38,7 +46,27 @@ public class EditarNotaActivity extends AppCompatActivity {
         obtenerDatos(IdNota, currentUserId, titulo, contenido);
 
         guardar.setOnClickListener(v -> {
+            String titulNota = titulo.getText().toString();
+            String contenidoNota = contenido.getText().toString();
 
+            if(TextUtils.isEmpty(titulNota) || TextUtils.isEmpty(contenidoNota)){
+                Toast.makeText(this, "Complete todos los campos", Toast.LENGTH_SHORT).show();
+            }else {
+                Map<String, Object> nota = new HashMap<>();
+                nota.put("titulo",  titulNota);
+                nota.put("contenido", contenidoNota);
+
+                FirebaseDatabase.getInstance().getReference().child("notas").child(currentUserId).child(IdNota).updateChildren(nota).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(EditarNotaActivity.this, "Nota editada con éxito", Toast.LENGTH_SHORT).show();
+                        }else {
+                            Toast.makeText(EditarNotaActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        };
+                    }
+                });
+            };
         });
 
     }
